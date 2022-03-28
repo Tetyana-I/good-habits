@@ -2,7 +2,7 @@
 ### Project Proposal
 GoodHabits is an application designed to help in building desirable habits. 
 This is a multi-platform application. It is supposed to be evenly focused full-stack application.
-For this project I'm going to use Python, Flask and Postgres. 
+For this project I'm going to use Node, React and Postgres. 
 
 I consider this project like a game application where user competes with themself. We know that adding a desirable habit, building a new routine, takes time, usually a couple of months. And the goal is to to get a long streak for the habit user is working on. It could take a few attempts to reach the goal. This application could be used not only as habit-building-helper, but also as a planner or checklist for user's everyday already established routines. 
 
