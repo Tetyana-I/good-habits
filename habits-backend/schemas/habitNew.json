@@ -1,0 +1,45 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "$id": "http://example.com/example.json",
+    "type": "object",
+    "title": "The root schema",
+    "description": "The root schema comprises the entire JSON document.",
+    "default": {},
+    "examples": [
+        {
+            "title": "Clean diet",
+            "habit_description": "No junk food, limit coffee",
+            "streak_target": 66
+        }
+    ],
+    "required": [
+        "title"
+    ],
+    "properties": {
+        "title": {
+            "type": "string",
+            "description": "Habit's title",
+            "default": "",
+            "examples": [
+                "Clean diet"
+            ]
+        },
+        "habit_description": {
+            "type": "string",
+            "description": "Detail explanation of the habit",
+            "default": "",
+            "examples": [
+                "No junk food, limit coffee"
+            ]
+        },
+        "streak_target": {
+            "type": "integer",
+            "description": "Number of days to establish the habit",
+            "default": 66,
+            "examples": [
+                66
+            ]
+        }
+    },
+    "additionalProperties": false
+}

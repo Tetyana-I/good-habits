@@ -1,0 +1,4 @@
+External API: 
+- https://inspiration.goprogram.ai/docs/
+or
+- https://github.com/fisenkodv/dictum#example-3

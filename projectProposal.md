@@ -11,10 +11,10 @@ The application designed for people who love todo-lists as I do :), and who woul
 #### Features
 The application will include features:
 
-    - track multiple habits (repeated todos or habit-goals) with own schedules;
-    - streak days counter for each goal;
-    - percentage of goal achivement for each habit;
-    - motivational quotes (and from users'community also);
+- track multiple habits (repeated todos or habit-goals) with own schedules;
+- streak days counter for each goal;
+- percentage of goal achivement for each habit;
+- motivational quotes (and from users'community also);
 
 #### Data
 To implement this functionality I'm going to include following data in the application database: 
