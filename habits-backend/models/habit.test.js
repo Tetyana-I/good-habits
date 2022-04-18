@@ -10,7 +10,7 @@ const {
   commonBeforeEach,
   commonAfterEach,
   commonAfterAll,
-  testUserIds,
+  testUsernames,
 } = require("./_testCommon");
 
 beforeAll(commonBeforeAll);
@@ -29,7 +29,7 @@ describe("create habit", function () {
             title: "Exercise",
             habit_description: "walking 30 min, abs routine 15min, yoga 10min",
             streak_target: 24,
-            user_id: testUserIds[0],
+            username: testUsernames[0],
             max_streak: 0,
             attempt: 1,
             current_counter: 0, 
@@ -54,7 +54,7 @@ describe("get by id", function () {
                 title: "Exercise",
                 habit_description: "walking 30 min, abs routine 15min, yoga 10min",
                 streak_target: 24,
-                user_id: testUserIds[0],
+                username: testUsernames[0],
                 max_streak: 0,
                 attempt: 1,
                 current_counter: 0, 
@@ -67,7 +67,7 @@ describe("get by id", function () {
             title: "Exercise",
             habit_description: "walking 30 min, abs routine 15min, yoga 10min",
             streak_target: 24,
-            user_id: testUserIds[0],
+            username: testUsernames[0],
             max_streak: 0,
             attempt: 1,
             current_counter: 0, 
@@ -96,7 +96,7 @@ describe("remove", function () {
                 title: "Exercise",
                 habit_description: "walking 30 min, abs routine 15min, yoga 10min",
                 streak_target: 24,
-                user_id: testUserIds[0],
+                username: testUsernames[0],
                 max_streak: 0,
                 attempt: 1,
                 current_counter: 0, 
@@ -136,7 +136,7 @@ describe("update", function () {
                 title: "Drink Water",
                 habit_description: "2 glasses",
                 streak_target: 24,
-                user_id: testUserIds[0],
+                username: testUsernames[0],
                 max_streak: 0,
                 attempt: 1,
                 current_counter: 0, 
@@ -155,7 +155,7 @@ describe("update", function () {
             title: "morning exercises",
             habit_description: "2 glasses",
             streak_target: 24,
-            user_id: testUserIds[0],
+            username: testUsernames[0],
             max_streak: 12,
             attempt: 1,
             current_counter: 0, 
@@ -176,12 +176,12 @@ describe("update", function () {
   });
 
 
-//  find all habits by user_id
+//  find all habits by username
 ///////////////////////////////////////////
 
 describe("findAll", function () {
     test("works", async function () {
-      let habits = await Habit.findAllByUserId(testUserIds[0]);
+      let habits = await Habit.findAllByUsername(testUsernames[0]);
       expect(habits).toEqual([]);
     });
 

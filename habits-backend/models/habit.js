@@ -10,8 +10,8 @@ const { sqlForPartialUpdate } = require("../helpers/sql");
 
 class Habit {
 // Create a habit (from data), update db, return new habit data.
-//  data should be { title, description, streakTarget }
-// Returns { id, user_id, title, description, streakTarget, maxStreak, attempt, currentCounter, last_checked }
+//  data should be { title, description, streak_target }
+// Returns { id, user_id, title, habit_description, streak_target, max_streak, attempt, current_counter, last_checked }
 
 
   static async create(data) {
@@ -20,14 +20,14 @@ class Habit {
           `INSERT INTO habits (title,
                              habit_description,
                              streak_target, 
-                             user_id,
+                             username,
                              max_streak,
                              attempt,
                              current_counter,
                              last_checked)
            VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
            RETURNING id,
-                    user_id,
+                    username,
                     title, 
                     habit_description,
                     streak_target,
@@ -39,7 +39,7 @@ class Habit {
           data.title,
           data.habit_description,
           data.streak_target,
-          data.user_id,
+          data.username,
           data.max_streak,
           data.attempt,
           data.current_counter,
@@ -59,7 +59,7 @@ class Habit {
 static async get(id) {
     const habitRes = await db.query(
           `SELECT id,
-                  user_id,
+                  username,
                   title,
                   habit_description,
                   streak_target,
@@ -92,15 +92,15 @@ static async get(id) {
   }
 
 
-//  Find all habits by user_id
-//  Returns [{ id, user_id, title, habit_description, streak_target,
+//  Find all habits by username
+//  Returns [{ id, username, title, habit_description, streak_target,
 //             max_streak, attempt, current_counter, last_checked }, ...]
 
 
-  static async findAllByUserId(user_id) {
+  static async findAllByUsername(username) {
     let habitsRes = await db.query(
         `SELECT id,
-                user_id,
+                username,
                 title,
                 habit_description,
                 streak_target,
@@ -109,8 +109,7 @@ static async get(id) {
                 current_counter,
                 last_checked
          FROM habits
-        WHERE id = $1`, [user_id]);
-
+        WHERE username = $1`, [username]);
     return habitsRes.rows;
   }
 
@@ -129,7 +128,7 @@ static async get(id) {
                       SET ${setCols} 
                       WHERE id = ${idVarIdx} 
                       RETURNING id, 
-                                user_id,
+                                username,
                                 title, 
                                 habit_description, 
                                 streak_target,

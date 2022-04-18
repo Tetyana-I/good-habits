@@ -3,7 +3,7 @@ const bcrypt = require("bcrypt");
 const db = require("../db.js");
 const { BCRYPT_WORK_FACTOR } = require("../config");
 
-const testUserIds = [];
+const testUsernames = [];
 
 async function commonBeforeAll() {
     await db.query("DELETE FROM users");
@@ -11,13 +11,13 @@ async function commonBeforeAll() {
     
     let res = await db.query(`INSERT INTO users(username, password)
             VALUES ('u1', $1), ('u2', $2)
-            RETURNING id, username`,
+            RETURNING username`,
             [
                 await bcrypt.hash("password1", BCRYPT_WORK_FACTOR),
                 await bcrypt.hash("password2", BCRYPT_WORK_FACTOR),
             ]);
     
-    testUserIds.push(res.rows[0].id);
+    testUsernames.push(res.rows[0].username);
 }
 
 async function commonBeforeEach() {
@@ -38,5 +38,5 @@ module.exports = {
   commonBeforeEach,
   commonAfterEach,
   commonAfterAll,
-  testUserIds,
+  testUsernames,
 };
