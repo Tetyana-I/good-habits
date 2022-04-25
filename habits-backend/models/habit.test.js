@@ -61,7 +61,7 @@ describe("get by id", function () {
                 last_checked: new Date(2022,4,13) 
             }
         ); 
-        let habit = await Habit.get(habitInDb.id);
+        let habit = await Habit.get(testUsernames[0], habitInDb.id);
         expect(habit).toEqual({
             id: habitInDb.id,  
             title: "Exercise",
@@ -77,7 +77,7 @@ describe("get by id", function () {
   
     test("not found if no such habit", async function () {
         try {
-            await Habit.get(0);
+            await Habit.get(testUsernames[0], 0);
             fail();
         } catch (err) {
             expect(err instanceof NotFoundError).toBeTruthy();
@@ -103,7 +103,7 @@ describe("remove", function () {
                 last_checked: new Date(2022,4,13) 
                 }
             ); 
-        let habit = await Habit.get(habitInDb.id);
+        let habit = await Habit.get(testUsernames[0], habitInDb.id);
         
         let res = await db.query(
             "SELECT id FROM habits WHERE id=$1", [habit.id]);

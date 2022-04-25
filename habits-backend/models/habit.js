@@ -3,6 +3,7 @@
 const db = require("../db");
 const { NotFoundError} = require("../expressError");
 const { sqlForPartialUpdate } = require("../helpers/sql");
+const { getDifferenceInDays } = require("../helpers/getDifferenceInDays");
 
 //////////////////////////////////////////////////
 // Related functions for habits.
@@ -10,8 +11,8 @@ const { sqlForPartialUpdate } = require("../helpers/sql");
 
 class Habit {
 // Create a habit (from data), update db, return new habit data.
-//  data should be { title, description, streak_target }
-// Returns { id, user_id, title, habit_description, streak_target, max_streak, attempt, current_counter, last_checked }
+//  data should be { title, habit_description, streak_target }
+// Returns { id, username, title, habit_description, streak_target, max_streak, attempt, current_counter, last_checked }
 
 
   static async create(data) {
@@ -52,11 +53,11 @@ class Habit {
 
   
 //   Given a habit id, return data about habit.
-//     Returns { id,  user_id, title, habit_description,
+//     Returns { id,  username, title, habit_description,
 //              streak_target, max_streak, attempt, current_counter, last_checked }
 //     Throws NotFoundError if not found.
 
-static async get(id) {
+static async get(username, id) {
     const habitRes = await db.query(
           `SELECT id,
                   username,
@@ -68,7 +69,7 @@ static async get(id) {
                   current_counter,
                   last_checked
            FROM habits
-           WHERE id = $1`, [id]);
+           WHERE username=$1 AND id = $2`, [username, id]);
 
     const habit = habitRes.rows[0];
     if (!habit) throw new NotFoundError(`No habit: ${id}`);
@@ -115,12 +116,13 @@ static async get(id) {
 
 
 //  Update habit data with `data`.
-//  Data can include include: 
+//  Data can include: 
 //  { title, habit_description, streak_target, max_streak, attempt,  current_counter, last_checked } 
 //  Returns habit Object
 //  Throws NotFoundError if not found.
 
   static async update(id, data) {
+    console.log("update function", data);
     const { setCols, values } = sqlForPartialUpdate(data);
     const idVarIdx = "$" + (values.length + 1);
 
@@ -140,10 +142,60 @@ static async get(id) {
     const habit = result.rows[0];
 
     if (!habit) throw new NotFoundError(`No habit: ${id}`);
-
+    console.log("habit in update:", habit);
     return habit;
   }
 
+  //  Check a habit
+  //  Data includes: { last_checked } 
+  // 1. checks if difference between today's date and last_checked is no more than 1 day
+  // 2. if dif is equal  => attempt++, current_counter = 1
+  //    if dif less or equal 1 day: current_counter++, if max_streak < current_counter => max_streak = current_counter
+  // 3. change last_checked and return updated habit
+  //  Returns habit Object
+  //  Throws NotFoundError if not found.
+
+  static async checkHabit(id, username, data) {
+    let result;
+    let habit = await this.get(username, id);
+    let diffInDays = getDifferenceInDays(habit.last_checked, data.last_checked);
+    console.log("difference in days", diffInDays);
+    // if a habit is new and streak didn't sart
+    if (habit.max_streak === 0){
+      console.log("===> step 0");
+        result = await this.update(id, {
+        attempt: habit.attempt+1,
+        current_counter: 1,
+        max_streak: 1,
+        last_checked: data.last_checked
+      });
+      return result;
+    }
+    // if streak was failed (a user missed a day), and a new attempt should started
+    if (diffInDays > 1) {
+      console.log("===> step1");
+        result = await this.update(id, {
+        attempt: habit.attempt+1,
+        current_counter: 1,
+        last_checked: data.last_checked
+      });
+    // if current streak is bigger than previous best result for this habit
+    } else if (habit.max_streak < habit.current_counter+1) {
+      console.log("===> step2");
+        result = await this.update(id, {
+        current_counter: habit.current_counter+1,
+        max_streak: habit.current_counter+1,
+        last_checked: data.last_checked
+      });
+      } else {
+        console.log("===> step3");
+          result = await this.update(id, {
+          current_counter: habit.current_counter+1,
+          last_checked: data.last_checked
+        });
+    }
+    return result;
+  }
 }
 
 module.exports = Habit;

@@ -10,7 +10,6 @@
             "title": "Clean diet",
             "habit_description": "No junk food, limit coffee",
             "streak_target": 66,
-            "username": "testuser",
             "max_streak": 0,
             "attempt": 1,
             "current_counter": 0,
@@ -18,14 +17,7 @@
         }
     ],
     "required": [
-        "title",
-        "habit_description",
-        "streak_target",
-        "username",
-        "max_streak",
-        "attempt",
-        "current_counter",
-        "last_checked"
+
     ],
     "properties": {
         "title": {
@@ -50,16 +42,6 @@
             "default": 66,
             "examples": [
                 66
-            ]
-        },
-        "username": {
-            "$id": "#/properties/username",
-            "type": "string",
-            "title": "The username schema",
-            "description": "An explanation about the purpose of this instance.",
-            "default": "",
-            "examples": [
-                "testuser"
             ]
         },
         "max_streak": {

@@ -7,21 +7,21 @@
 /** Express app for jobly. */
 
 const express = require("express");
-// const cors = require("cors");
+const cors = require("cors");
 
 const { NotFoundError } = require("./expressError");
 
 const { authenticateJWT } = require("./middleware/auth");
 const authRoutes = require("./routes/auth");
-// const companiesRoutes = require("./routes/companies");
 const usersRoutes = require("./routes/users");
-// const jobsRoutes = require("./routes/jobs");
+const habitsRoutes = require("./routes/habits");
+
 // use external logger:
 const morgan = require("morgan");
 
 const app = express();
 
-// app.use(cors());
+app.use(cors());
 
 // Parse request bodies for JSON
 app.use(express.json());
@@ -34,7 +34,7 @@ app.use(authenticateJWT);
 
 app.use("/auth", authRoutes);
 app.use("/users", usersRoutes);
-// app.use("/habits", habitsRoutes);
+app.use("/habits", habitsRoutes);
 
 
 // 404 errors handler
