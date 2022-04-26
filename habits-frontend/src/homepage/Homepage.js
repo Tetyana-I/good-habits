@@ -4,6 +4,8 @@ import "./Homepage.css";
 import UserContext from "../auth/UserContext";
 import HabitList from "../habits/HabitList";
 import GuideList from "./GuideList";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faRocket } from '@fortawesome/free-solid-svg-icons';
 
 // Homepage of site.
 // Shows welcome message or login/register buttons.
@@ -22,14 +24,21 @@ function Homepage() {
               ? <HabitList />
               : (
                   <div>
-                    <h2 className="mb-4 font-weight-bold">Let's get started!</h2>
-                    <p className="lead">"People do not decide their futures, they decide their habits and their habits decide their futures"</p>
-                    <p> - F.M Alexander</p>
-                    <Link className="btn btn-primary font-weight-bold m-3"
+                    <h2 className="Homepage-title mb-3 font-weight-bold">
+                        Let's get started! 
+                        <FontAwesomeIcon className="mx-3" icon={faRocket}/>
+                    </h2>
+                    <div className="Homepage-quote">
+                        <p className="lead">
+                            "People do not decide their futures, they decide their habits and their habits decide their futures"
+                        </p>
+                        <p> - F.M Alexander</p>
+                    </div>
+                    <Link className="btn btn-primary font-weight-bold mt-4"
                           to="/login">
                       Log in
                     </Link>
-                    <Link className="btn btn-outline-primary font-weight-bold"
+                    <Link className="btn btn-outline-primary font-weight-bold mx-3 mt-4"
                           to="/signup">
                       Sign up
                     </Link>

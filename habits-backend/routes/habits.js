@@ -38,7 +38,6 @@ router.post("/:username", ensureCorrectUserOrAdmin, async function (req, res, ne
 
 router.get("/:username/:id", ensureCorrectUserOrAdmin, async function (req, res, next) {
   try {
-    console.log("type id", typeof req.params.id);
     const habit = await Habit.get( req.params.username, req.params.id);
     return res.json({ habit });
   } catch (err) {

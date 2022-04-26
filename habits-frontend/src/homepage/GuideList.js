@@ -2,7 +2,7 @@ import Guide from "./Guide";
 
 function GuideList() {
     return (
-            <div className="row mt-5 justify-content-center">
+            <div className="row mt-4 justify-content-center">
             <Guide 
             step="1"
             title="Setup Your Account"

@@ -7,7 +7,6 @@ import SignupForm from "../auth/SignupForm";
 import NewHabitForm from "../habits/NewHabitForm";
 import HabitList from "../habits/HabitList";
 import HabitDetails from "../habits/HabitDetails";
-import Quote from "../habits/Quote";
 
 import PrivateRoute from "./PrivateRoute";
 
@@ -41,12 +40,8 @@ function Routes({ login, signup, createNewHabit,  }) {
             <SignupForm signup={signup} />
           </Route>
           
-          <Route exact path="/quote">
-            <Quote />
-          </Route>
-
           <PrivateRoute exact path="/habits/:id">
-                <HabitDetails />
+            <HabitDetails />
           </PrivateRoute>
 
           <PrivateRoute exact path="/habits">
