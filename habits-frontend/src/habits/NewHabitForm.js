@@ -58,6 +58,8 @@ function NewHabitForm({ createNewHabit }) {
                       name="title"
                       className="form-control"
                       value={formData.title}
+                      minlength="1"
+                      maxlength="50"
                       onChange={handleChange}
                       required
                   />
@@ -68,8 +70,8 @@ function NewHabitForm({ createNewHabit }) {
                       name="habit_description"
                       className="form-control"
                       value={formData.habit_description}
+                      maxlength="250"
                       onChange={handleChange}
-                      required
                   />
                 </div>
                 <div className="form-group">

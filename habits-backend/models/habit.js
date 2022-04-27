@@ -160,7 +160,7 @@ static async get(username, id) {
     let habit = await this.get(username, id);
     let diffInDays = getDifferenceInDays(habit.last_checked, data.last_checked);
     console.log("difference in days", diffInDays);
-    // if a habit is new and streak didn't sart
+    // if a habit is new and streak didn't start
     if (habit.max_streak === 0){
       console.log("===> step 0");
         result = await this.update(id, {

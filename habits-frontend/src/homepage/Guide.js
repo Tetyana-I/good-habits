@@ -3,7 +3,7 @@ import "./Guide.css";
 function Guide({step, title, description} ) {
     return (
         <div className="Guide">
-            <div className="Guide-step btn px-3">
+            <div className="Guide-step">
                 {step}
             </div>
             <h4 className="Guide-title">{title}</h4>

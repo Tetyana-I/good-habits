@@ -31,6 +31,8 @@
         "title": {
             "type": "string",
             "description": "Habit's title",
+            "minLength": 1,
+            "maxLength": 50,
             "default": "",
             "examples": [
                 "Clean diet"
@@ -39,6 +41,7 @@
         "habit_description": {
             "type": "string",
             "description": "Detail explanation of the habit",
+            "maxLength": 250,
             "default": "",
             "examples": [
                 "No junk food, limit coffee"
