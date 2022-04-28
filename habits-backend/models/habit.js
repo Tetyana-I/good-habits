@@ -11,7 +11,7 @@ const { getDifferenceInDays } = require("../helpers/getDifferenceInDays");
 
 class Habit {
 // Create a habit (from data), update db, return new habit data.
-//  data should be { title, habit_description, streak_target }
+//  data should be { title, habit_description, streak_target, username, max_streak, attempt, current_counter, last_checked }
 // Returns { id, username, title, habit_description, streak_target, max_streak, attempt, current_counter, last_checked }
 
 
@@ -52,7 +52,7 @@ class Habit {
   }
 
   
-//   Given a habit id, return data about habit.
+//   Given a habit id and username, return data for this habit.
 //     Returns { id,  username, title, habit_description,
 //              streak_target, max_streak, attempt, current_counter, last_checked }
 //     Throws NotFoundError if not found.
@@ -122,7 +122,6 @@ static async get(username, id) {
 //  Throws NotFoundError if not found.
 
   static async update(id, data) {
-    console.log("update function", data);
     const { setCols, values } = sqlForPartialUpdate(data);
     const idVarIdx = "$" + (values.length + 1);
 
@@ -142,15 +141,14 @@ static async get(username, id) {
     const habit = result.rows[0];
 
     if (!habit) throw new NotFoundError(`No habit: ${id}`);
-    console.log("habit in update:", habit);
     return habit;
   }
 
   //  Check a habit
   //  Data includes: { last_checked } 
   // 1. checks if difference between today's date and last_checked is no more than 1 day
-  // 2. if dif is equal  => attempt++, current_counter = 1
-  //    if dif less or equal 1 day: current_counter++, if max_streak < current_counter => max_streak = current_counter
+  // 2. if diff is more than 1  => attempt++, current_counter = 1
+  //    if diff less or equal 1 day: current_counter++, if max_streak < current_counter => max_streak = current_counter
   // 3. change last_checked and return updated habit
   //  Returns habit Object
   //  Throws NotFoundError if not found.
@@ -173,7 +171,7 @@ static async get(username, id) {
     }
     // if streak was failed (a user missed a day), and a new attempt should started
     if (diffInDays > 1) {
-      console.log("===> step1");
+      console.log("===> step 1");
         result = await this.update(id, {
         attempt: habit.attempt+1,
         current_counter: 1,
@@ -181,14 +179,14 @@ static async get(username, id) {
       });
     // if current streak is bigger than previous best result for this habit
     } else if (habit.max_streak < habit.current_counter+1) {
-      console.log("===> step2");
+      console.log("===> step 2");
         result = await this.update(id, {
         current_counter: habit.current_counter+1,
         max_streak: habit.current_counter+1,
         last_checked: data.last_checked
       });
       } else {
-        console.log("===> step3");
+        console.log("===> step 3");
           result = await this.update(id, {
           current_counter: habit.current_counter+1,
           last_checked: data.last_checked

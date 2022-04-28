@@ -12,6 +12,7 @@ const Habit = require("../models/habit");
 const { BCRYPT_WORK_FACTOR } = require("../config.js");
 const { sqlForPartialUpdate } = require("../helpers/sql");
 
+////////////////////////////////////////////////////////////
 // Related functions for users
 ////////////////////////////////////////////////////////////
 
@@ -119,7 +120,7 @@ class User {
   }
 
     // Update user data with `data`.
-    //  This is a "partial update" --- it's fine if data doesn't contain
+    //  This is a "partial update" - it's fine if data doesn't contain
     //  all the fields; this only changes provided ones.
     //  Data can include:  { password, isAdmin }
     //  Returns { username, isAdmin }

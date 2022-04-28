@@ -1,6 +1,6 @@
 import { render } from '@testing-library/react';
-import App from './App';
+import NewHabitForm from './NewHabitForm';
 
 test('renders without crashing', () => {
-  render(<App />);
+  render(<NewHabitForm />);
 });

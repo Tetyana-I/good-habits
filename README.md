@@ -60,15 +60,38 @@ The application will be open in a browser.
 
 5. If you don't want to create a new user account and "just browsing", you can use these credentials for login: "username" =  testuser and "password" = password.  
 
-### Features
+
+## Features
 The application includes features:
 
-- user authentication and authorisation:
+- user authentication and authorization:
     - Even though the application will not be collecting any sensitive information, before getting access to the app any user should create an account and login. Authorization/authentication will allow the application to keep track of user's data, and prevent changing other's user data. Moreover, it's allow user to use application from any device with a browser.
-- new habit creation and deletion;
-- streak days counter for each habit; 
-- maximum streak counter for eack habit;
-- daily tracker for each habit; 
-- percentage of goal achivement for each habit;
-- daily motivational quotes;
+- new habit creation and deletion: 
+    - logged-in user can create a new habit providing title, description and streak target for this habit in days (by default streak target is 66 days);
+- streak counter in days for each habit:
+    - once a day a user can check a habit (after check this habit will be disabled for checking until the next day);
+    - streak counter will be increased if the difference between last previous check and current check for this habit less or equal 1 day; 
+    - otherwise, the counter will be restarted.  
+- maximum streak counter for each habit: 
+    - in this app a user competes with himself; and
+    as habit development could take several attempts, the best result is saved as maximum streak achieved; 
+- percentage of goal achievement for each habit:
+    - at any moment a user can track his success progress in percent;
+- daily motivational quotes: 
+    - a new inspirational quote for any new app-visit.
 
+## Tests
+*Backend*:  jest
+
+To run tests (from root app directory):
+
+        cd habits-backend
+        jest
+
+
+*Frontend*:  react-testing-library
+
+To run tests (from root app directory):
+
+        cd habits-frontend
+        npm test

@@ -1,6 +1,6 @@
 import { render } from '@testing-library/react';
-import App from './App';
+import GuideList from './GuideList';
 
 test('renders without crashing', () => {
-  render(<App />);
+  render(<GuideList />);
 });

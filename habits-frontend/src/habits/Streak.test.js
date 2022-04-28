@@ -1,6 +1,6 @@
 import { render } from '@testing-library/react';
-import App from './App';
+import Streak from './Streak';
 
 test('renders without crashing', () => {
-  render(<App />);
+  render(<Streak />);
 });

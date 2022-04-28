@@ -60,8 +60,8 @@ function SignupForm({ signup }) {
                   <input
                       name="username"
                       className="form-control"
-                      minlength="1"
-                      maxlength="25"
+                      minLength="1"
+                      maxLength="25"
                       value={formData.username}
                       onChange={handleChange}
                   />
@@ -73,7 +73,7 @@ function SignupForm({ signup }) {
                       type="password"
                       name="password"
                       className="form-control"
-                      minlength="5"
+                      minLength="5"
                       value={formData.password}
                       onChange={handleChange}
                   />

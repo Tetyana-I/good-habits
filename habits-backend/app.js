@@ -4,7 +4,8 @@
 
 "use strict";
 
-/** Express app for jobly. */
+// Express app for good-habits
+////////////////////////////////////////////////
 
 const express = require("express");
 const cors = require("cors");
@@ -25,9 +26,8 @@ app.use(cors());
 
 // Parse request bodies for JSON
 app.use(express.json());
-/////////////////////////////////////////////
 // app.use(express.urlencoded({ extended: true }));
-/////////////////////////////////
+
 // import a logger
 app.use(morgan("tiny"));
 app.use(authenticateJWT);
