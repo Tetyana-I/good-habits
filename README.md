@@ -77,14 +77,10 @@ The application includes features:
     as habit development could take several attempts, the best result is saved as maximum streak achieved; 
 - percentage of goal achievement for each habit:
     - at any moment a user can track his success progress in percent;
-
-![stats](https://raw.githubusercontent.com/Tetyana-I/good-habits/main/static/stats.JPG)
-
-
 - daily motivational quotes: 
     - a new inspirational quote for any new app-visit.
 
-### User Flow
+## User Flow
 
 ![user flow](https://raw.githubusercontent.com/Tetyana-I/good-habits/main/static/user_flow.png)
 
