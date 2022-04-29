@@ -22,7 +22,7 @@ This application could be used not only as habit-building-helper, but also as a 
 
 
 ## Deployment
-... (coming soon :) )
+https://good-habits.surge.sh/
 
 ## Local Deployment
 **Requirements:** PostgreSQL, Node.js, npm
@@ -77,8 +77,17 @@ The application includes features:
     as habit development could take several attempts, the best result is saved as maximum streak achieved; 
 - percentage of goal achievement for each habit:
     - at any moment a user can track his success progress in percent;
+
+![stats](https://raw.githubusercontent.com/Tetyana-I/good-habits/main/static/stats.JPG)
+
+
 - daily motivational quotes: 
     - a new inspirational quote for any new app-visit.
+
+### User Flow
+
+![user flow](https://raw.githubusercontent.com/Tetyana-I/good-habits/main/static/user_flow.PNG)
+
 
 ## Tests
 *Backend*:  jest
