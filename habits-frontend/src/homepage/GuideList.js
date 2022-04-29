@@ -10,7 +10,7 @@ function GuideList() {
             />
             <Guide 
             step="2"
-            title="Add Habbits"
+            title="Add Habits"
             description="Add a new habit that you are planning to develop or everyday todo and choose your streak target in days, for example,  'title': 'Exercise', 'description': '10 min yoga, 30 min walking', 'streak': 30 days"
             />
             <Guide 

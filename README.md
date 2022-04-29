@@ -18,7 +18,7 @@ This application could be used not only as habit-building-helper, but also as a 
 **Back End**: 
 - *Database*: PostgreSQL
 - *API*: Node.js, Express.js
-- *External API reference*: "Inspiration" (https://inspiration.goprogram.ai/docs/)
+- *External free-API reference*: "Inspiration" (https://inspiration.goprogram.ai/docs/)
 
 
 ## Deployment
