@@ -86,7 +86,7 @@ The application includes features:
 
 ### User Flow
 
-![user flow](https://raw.githubusercontent.com/Tetyana-I/good-habits/main/static/user_flow.PNG)
+![user flow](https://raw.githubusercontent.com/Tetyana-I/good-habits/main/static/user_flow.png)
 
 
 ## Tests
